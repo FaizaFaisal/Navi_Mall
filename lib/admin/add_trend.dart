@@ -51,39 +51,39 @@ class _AddTrendScreenState extends State<AddTrendScreen> {
               ),
             ),
             actions: [
-              IconButton(
-                  onPressed: () {
-                    AwesomeDialog(
-                      context: context,
-                      dialogType: DialogType.QUESTION,
-                      headerAnimationLoop: false,
-                      animType: AnimType.TOPSLIDE,
-                      title: 'Delete Trending?',
-                      btnOkColor: Colors.redAccent,
-                      btnOkText: 'Delete',
-                      btnOkIcon: Icons.delete_outlined,
-                      btnCancelColor: Colors.blueGrey.shade700,
-                      btnCancelText: 'Cancel',
-                      desc: 'This will delete the trending from the mall',
-                      descTextStyle: TextStyle(
-                          color: Colors.blueGrey.shade300, fontSize: 18),
-                      showCloseIcon: true,
-                      btnCancelOnPress: () {},
-                      btnOkOnPress: () {
-                        firestoreInstance
-                            .collection("malls")
-                            .doc(mall)
-                            .collection('trending')
-                            .doc(store)
-                            .delete();
-                      },
-                    ).show();
-                  },
-                  icon: Icon(
-                    Icons.delete,
-                    color: color.AppColor.white,
-                    size: 25,
-                  )),
+              // IconButton(
+              //     onPressed: () {
+              //       AwesomeDialog(
+              //         context: context,
+              //         dialogType: DialogType.QUESTION,
+              //         headerAnimationLoop: false,
+              //         animType: AnimType.TOPSLIDE,
+              //         title: 'Delete Trending?',
+              //         btnOkColor: Colors.redAccent,
+              //         btnOkText: 'Delete',
+              //         btnOkIcon: Icons.delete_outlined,
+              //         btnCancelColor: Colors.blueGrey.shade700,
+              //         btnCancelText: 'Cancel',
+              //         desc: 'This will delete the trending from the mall',
+              //         descTextStyle: TextStyle(
+              //             color: Colors.blueGrey.shade300, fontSize: 18),
+              //         showCloseIcon: true,
+              //         btnCancelOnPress: () {},
+              //         btnOkOnPress: () {
+              //           firestoreInstance
+              //               .collection("malls")
+              //               .doc(mall)
+              //               .collection('trending')
+              //               .doc(store)
+              //               .delete();
+              //         },
+              //       ).show();
+              //     },
+              //     icon: Icon(
+              //       Icons.delete,
+              //       color: color.AppColor.white,
+              //       size: 25,
+              //     )),
             ]),
         backgroundColor: color.AppColor.homePageBackground,
         body: Container(
@@ -174,8 +174,9 @@ class _AddTrendScreenState extends State<AddTrendScreen> {
                 const SizedBox(height: 8),
                 TextFormField(
                   // controller: nameController,
-                  readOnly: true,
+
                   initialValue: description,
+                  style: TextStyle(color: Colors.black87),
                   keyboardType: TextInputType.text,
                   onChanged: (value) => description = value,
                   decoration: InputDecoration(
@@ -191,7 +192,7 @@ class _AddTrendScreenState extends State<AddTrendScreen> {
                   child: GestureDetector(
                     onTap: () {
                       if (widget.mall != '' && widget.store != '') {
-                        uploadFile(image!);
+                        uploadFile(image!, widget.mall, widget.store);
                         addTrending(widget.mall, widget.store);
                         AwesomeDialog(
                             context: context,
@@ -262,7 +263,7 @@ class _AddTrendScreenState extends State<AddTrendScreen> {
   }
 
   /// Upload Profile ///////////////////////////////////////
-  Future uploadFile(File image) async {
+  Future uploadFile(File image, mallName, storeName) async {
     try {
       firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
           .ref()
@@ -276,9 +277,9 @@ class _AddTrendScreenState extends State<AddTrendScreen> {
 
           firestoreInstance
               .collection("malls")
-              .doc(mall)
+              .doc(mallName)
               .collection('trending')
-              .doc(store)
+              .doc(storeName)
               .update({
             "photoURL": fileURL.toString(),
           }).whenComplete(() {

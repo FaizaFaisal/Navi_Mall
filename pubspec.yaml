@@ -53,7 +53,7 @@ dependencies:
   firebase_auth: ^3.3.18
   flutter_secure_storage: ^5.0.2
   firebase_storage: ^10.2.16
-
+  share_plus:
   http: ^0.13.4
   get: ^4.6.3
 

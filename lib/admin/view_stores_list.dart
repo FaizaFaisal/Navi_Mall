@@ -134,27 +134,27 @@ class _ViewStoresListScreenState extends State<ViewStoresListScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(width: 5),
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.elliptical(10, 5)),
-                              color: Color.fromARGB(255, 7, 81, 6)
-                                  .withOpacity(0.4),
-                            ),
-                            child: IconButton(
-                              onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: ((context) => ViewStoreScreen(
-                                          name: service_lst![index].store_name,
-                                        ))));
-                              },
-                              icon: Icon(
-                                Icons.edit,
-                                color: color.AppColor.white,
-                              ),
-                            ),
-                          ),
+                          // SizedBox(width: 5),
+                          // Container(
+                          //   decoration: BoxDecoration(
+                          //     borderRadius:
+                          //         BorderRadius.all(Radius.elliptical(10, 5)),
+                          //     color: Color.fromARGB(255, 7, 81, 6)
+                          //         .withOpacity(0.4),
+                          //   ),
+                          //   child: IconButton(
+                          //     onPressed: () {
+                          //       Navigator.of(context).push(MaterialPageRoute(
+                          //           builder: ((context) => ViewStoreScreen(
+                          //                 name: service_lst![index].store_name,
+                          //               ))));
+                          //     },
+                          //     icon: Icon(
+                          //       Icons.edit,
+                          //       color: color.AppColor.white,
+                          //     ),
+                          //   ),
+                          // ),
                           SizedBox(width: 7.5),
                           Container(
                             decoration: BoxDecoration(
