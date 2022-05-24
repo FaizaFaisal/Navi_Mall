@@ -267,7 +267,7 @@ class _AddTrendScreenState extends State<AddTrendScreen> {
     try {
       firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
           .ref()
-          .child("malls/$mall/trending/$store/trend_img");
+          .child("malls/$mallName/store/$storeName/trend_Img");
 
       firebase_storage.UploadTask uploadTask = ref.putFile(image);
       uploadTask.whenComplete(() {
