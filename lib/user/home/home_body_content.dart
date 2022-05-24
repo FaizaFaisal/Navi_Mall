@@ -361,7 +361,7 @@ class _HomeBodyContentScreenState extends State<HomeBodyContentScreen> {
                                         },
                                         icon: Icon(
                                           Icons.share,
-                                          color: color.AppColor.buttons,
+                                          color: color.AppColor.white,
                                         ),
                                       ),
                                       ElevatedButton(
