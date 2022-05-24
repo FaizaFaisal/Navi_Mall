@@ -42,7 +42,11 @@ class _HomeBodyContentScreenState extends State<HomeBodyContentScreen> {
   trend_modelClass? _trend_modelcalss;
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-
+  final TextEditingController searchController = TextEditingController();
+  mall_modelClass? mallSearchResponse;
+  int _currentIndex = 0;
+  List<mall_modelClass>? business_lst;
+  List<String>? id;
   @override
   void initState() {
     super.initState();
@@ -84,15 +88,22 @@ class _HomeBodyContentScreenState extends State<HomeBodyContentScreen> {
                 Container(
                   width: MediaQuery.of(context).size.width - 40,
                   child: TextField(
+                    controller: searchController,
                     cursorColor: color.AppColor.matteBlack,
                     style: GoogleFonts.lato(),
                     decoration: InputDecoration(
                       hintText:
                           'Search for shopping center, brands, stores ...',
                       hintStyle: TextStyle(color: color.AppColor.gray),
-                      suffixIcon: Icon(
-                        Icons.search,
-                        color: color.AppColor.matteBlack,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          Icons.search,
+                          color: color.AppColor.matteBlack,
+                        ),
+                        onPressed: () {
+                          //get_mall_search(searchController.text.trim());
+                          print("Click");
+                        },
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(40)),
